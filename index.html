@@ -201,7 +201,7 @@ A home for the Marshallese<br><span style="font-style:italic;color:#E8A94D">comm
     <div style="position:relative;flex:1;min-width:260px">
       <div style="font:600 10px Figtree,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#E8A94D;margin-bottom:10px">Free Tool · Launch</div>
       <h3 style="font:600 28px/1.1 Fraunces,serif;margin:0 0 10px">Résumé Builder</h3>
-      <p style="font:400 14.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.8);margin:0;max-width:440px">Fill in five simple tabs for your personal info, experience, education, skills, and a summary, then download a clean one page PDF. Available in English and Kajin Majōl.</p>
+      <p style="font:400 14.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.8);margin:0;max-width:440px">Fill in five simple tabs for your personal info, experience, education, skills, and a summary, then download a clean one-page PDF. Available in English and Kajin Majōl.</p>
     </div>
     <div style="position:relative;display:inline-flex;align-items:center;gap:10px;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;background:#E8A94D;padding:16px 26px;border-radius:999px">Build my résumé →</div>
     {{ cardStrokeLight }}
@@ -679,7 +679,7 @@ class Component extends DCLogic {
 
     const news=[
       {day:'12',mon:'Jul',tag:'Relief Drive',title:'Chuuk relief drive: Super Typhoon Sinlaku',body:'We\u2019re collecting for Micronesian families who lost homes and clean water. Drop-off and donation info is down in the Donate section.',cta:'See on Facebook',href:fbUrl},
-      {day:'01',mon:'Aug',tag:'Community Event',title:'2nd Annual Back to School Event',body:'Backpacks and school supplies for the kids, plus basketball and volleyball, food, and family fun at Escalante Community Center. Everyone is welcome, see our Facebook for details.',cta:'See on Facebook',href:fbUrl}
+      {day:'01',mon:'Aug',tag:'Community Event',title:'2nd Annual Back to School Event',body:'Backpacks and school supplies for the kids, plus basketball and volleyball, food, and family fun at Escalante Community Center. Everyone is welcome. See our Facebook for details.',cta:'See on Facebook',href:fbUrl}
     ];
 
     const communityLinks=[
@@ -692,9 +692,9 @@ class Component extends DCLogic {
     ];
     const educationLinks=[
       {badge:'Financial Aid',badgeColor:'#3A5F4F',deadline:'Opens each fall',title:'FAFSA: Federal Student Aid',body:'Free federal aid for college and trade school. Many Marshallese students qualify under COFA, and this is the first step.',cta:'Start your FAFSA',href:'https://studentaid.gov/h/apply-for-aid/fafsa'},
-      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'Arizona State University',body:'Apply to ASU, one of Arizona\u2019s largest universities, with strong support for first generation and Pacific Islander students.',cta:'Apply to ASU',href:'https://admission.asu.edu/apply'},
-      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'University of Arizona',body:'Apply to the University of Arizona in Tucson, with resources for transfer, first generation, and COFA students.',cta:'Apply to UArizona',href:'https://admissions.arizona.edu/apply'},
-      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'Grand Canyon University',body:'Apply to GCU in Phoenix, a private university with flexible on campus and online degree programs.',cta:'Apply to GCU',href:'https://www.gcu.edu/admissions'}
+      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'Arizona State University',body:'Apply to ASU, one of Arizona\u2019s largest universities, with strong support for first-generation and Pacific Islander students.',cta:'Apply to ASU',href:'https://admission.asu.edu/apply'},
+      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'University of Arizona',body:'Apply to the University of Arizona in Tucson, with resources for transfer, first-generation, and COFA students.',cta:'Apply to UArizona',href:'https://admissions.arizona.edu/apply'},
+      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'Grand Canyon University',body:'Apply to GCU in Phoenix, a private university with flexible on-campus and online degree programs.',cta:'Apply to GCU',href:'https://www.gcu.edu/admissions'}
     ];
 
     const sports=Object.keys(tData).map(k=>({label:tData[k].label,select:()=>set({tab:k}),tabStyle:this.styleStr(this.tabStyle(this.state.tab===k))}));
