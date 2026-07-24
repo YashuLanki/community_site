@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+._*
+.thumbnail
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Local tooling / staging (not part of the site)
+.claude/
+.remember/
+incoming/

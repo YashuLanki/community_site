@@ -26,6 +26,15 @@
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
   @keyframes flagWave{0%,100%{transform:skewY(0deg)}50%{transform:skewY(-1.4deg)}}
   @keyframes donatePulse{0%,100%{box-shadow:0 0 0 0 rgba(232,169,77,.55),0 6px 18px rgba(232,169,77,.3)}50%{box-shadow:0 0 0 9px rgba(232,169,77,0),0 6px 18px rgba(232,169,77,.3)}}
+  [data-marquee]{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+  [data-marquee] .mtrack{display:flex;width:max-content;animation:amcSlide 65s linear infinite}
+  [data-marquee]:hover .mtrack{animation-play-state:paused}
+  [data-marquee] .mgroup{display:flex;gap:18px;padding-right:18px}
+  [data-marquee] figure{flex:none;width:340px;height:252px;margin:0;position:relative;border-radius:16px;overflow:hidden;background:#0B2942;box-shadow:0 8px 22px rgba(11,41,66,.16)}
+  [data-marquee] img{width:100%;height:100%;object-fit:cover;display:block}
+  [data-marquee] figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 15px 14px;font:600 13px/1.35 Figtree,sans-serif;color:#F5F0E6;background:linear-gradient(to top,rgba(11,41,66,.92),rgba(11,41,66,.4) 60%,transparent)}
+  @keyframes amcSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){[data-marquee]{overflow-x:auto}[data-marquee] .mtrack{animation:none}}
   @media (max-width:860px){
     [data-hero-grid]{grid-template-columns:1fr !important;padding-top:64px !important;padding-bottom:72px !important;gap:36px !important}
     [data-about-grid],[data-updates-grid],[data-tourn-grid],[data-donate-grid]{grid-template-columns:1fr !important}
@@ -35,6 +44,7 @@
     [data-desktop-nav] a{font-size:12.5px !important}
   }
   @media (max-width:560px){
+    [data-marquee] figure{width:264px;height:198px}
     [data-leaders-grid],[data-schol-grid],[data-sports-grid]{grid-template-columns:1fr !important}
     nav{flex-wrap:wrap;row-gap:12px}
     [data-spacer]{display:none !important}
@@ -56,7 +66,7 @@
       <span style="display:grid;place-items:center;width:40px;height:40px;flex:none">{{ navMark }}</span>
       <span style="display:flex;flex-direction:column;line-height:1.05">
         <span style="font:700 15px/1 Fraunces,serif;letter-spacing:.01em">Arizona Marshallese</span>
-        <span style="font:600 9px/1.3 Figtree,sans-serif;letter-spacing:.34em;color:#E8A94D">COMMUNITY · EST. 2024</span>
+        <span style="font:600 9px/1.3 Figtree,sans-serif;letter-spacing:.34em;color:#E8A94D">COMMUNITY</span>
       </span>
     </a>
     <div style="flex:1" data-spacer=""></div>
@@ -84,17 +94,14 @@
         <span style="font:600 11px Figtree,sans-serif;letter-spacing:.36em;text-transform:uppercase;color:#E8A94D">Marshallese in Arizona</span>
       </div>
       <h1 style="font:600 clamp(40px,6vw,74px)/1.02 Fraunces,serif;letter-spacing:-.015em;margin:0 0 24px;animation:riseIn .9s ease .1s both" data-anim="entrance">
-Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home away from home.</span>
+A home for the Marshallese<br><span style="font-style:italic;color:#E8A94D">community in Arizona.</span>
       </h1>
       <p style="font:400 clamp(16px,1.5vw,19px)/1.65 Figtree,sans-serif;max-width:540px;color:rgba(245,240,230,.82);margin:0 0 34px;animation:riseIn .9s ease .22s both" data-anim="entrance">
-        We are Marshallese families who followed the stars across the Pacific and planted new roots under the Arizona sun. Our community keeps our language, our faith, and our <em style="font-style: normal; color: rgb(245, 240, 230);">manit</em> alive for the children growing up here.
+        We're a 501(c)(3) nonprofit helping Marshallese families settle in Arizona, connect with the services they need, and keep our language, faith, and <em style="font-style: normal; color: rgb(245, 240, 230);">manit</em> alive for the kids growing up here.
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:14px;animation:riseIn .9s ease .34s both" data-anim="entrance">
         <a href="#about" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;background:#F5F0E6;padding:15px 26px;border-radius:999px">
-          Meet the community{{ btnStroke }}
-        </a>
-        <a href="#donate" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#F5F0E6;border:1px solid rgba(245,240,230,.4);padding:15px 26px;border-radius:999px">
-          Support our families{{ btnStroke }}
+          About us{{ btnStroke }}
         </a>
       </div>
     </div>
@@ -115,10 +122,10 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
   <div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start" data-about-grid="">
     <div data-reveal="">
       <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#C4622D;margin-bottom:16px">Our Story · Est. 2024</div>
-      <h2 style="font:600 clamp(30px,4vw,46px)/1.06 Fraunces,serif;letter-spacing:-.01em;margin:0 0 22px;color:#0B2942">Two homes, one people.</h2>
-      
-      <p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0 0 16px">Marshallese families live all across Arizona, from Tucson up to Flagstaff, though most of us settle in the Phoenix area. People come here for work, for school, and for medical care they can't get back home.&nbsp;AMC exists to close that gap - one family, one question, one connection at a time.</p><p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0 0 16px">We started AMC in 2024 as a 501(c)(3) nonprofit, run by Marshallese for Marshallese. We help families get set up, whether that is helping with I-94 update, enrolling onto health insurance, or applying for scholarships, we keep our culture front and center while we do it.</p>
-      <p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0">When one of us learns the way, we mark it for the next canoe. That's the whole idea.</p>
+      <h2 style="font:600 clamp(30px,4vw,46px)/1.06 Fraunces,serif;letter-spacing:-.01em;margin:0 0 22px;color:#0B2942">Who we are.</h2>
+
+      <p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0 0 16px">Founded in 2024, Arizona Marshallese Community is a 501(c)(3) nonprofit that represents and supports Marshallese families across the state. Most of us are in the Phoenix area, with families as far out as Tucson and Flagstaff, and many came here for work, school, or medical care.</p><p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0 0 16px">AMC is run entirely by Marshallese people for our own community. That means helping with things like updating an I-94, signing up for health insurance, applying for scholarships, and pointing families toward local resources, all while keeping our language and culture close.</p>
+      <p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0">That's what family means to us. We show up for each other, the same way we always have.</p>
     </div>
     <div data-reveal="">
       <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#3A5F4F;margin-bottom:20px">Leadership</div>
@@ -139,16 +146,84 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
 
 {{ divider }}
 
+<!-- ===== RESOURCES ===== -->
+<section id="resources" style="max-width:1200px;margin:0 auto;padding:88px 24px">
+  <div style="margin-bottom:40px;max-width:640px" data-reveal="">
+    <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#C4622D;margin-bottom:14px">Resources</div>
+    <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0 0 14px;color:#0B2942">Resources for families.</h2>
+    <p style="font:400 16px/1.65 Figtree,sans-serif;color:rgba(11,41,66,.75);margin:0">A free résumé builder and community support, all in one place.</p>
+  </div>
+
+  <div style="font:600 12px Figtree,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#0B2942;margin:4px 0 18px;padding-bottom:10px;border-bottom:1px solid rgba(11,41,66,.12)" data-reveal="">Résumé &amp; Community Support</div>
+
+  <!-- resume launch card -->
+  <a href="https://azmarshallese.github.io/resume_builder/" target="_blank" rel="noopener" data-reveal="" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;gap:28px;background:#0B2942;color:#F5F0E6;border-radius:18px;padding:34px;margin-bottom:20px;text-decoration:none">
+    <div style="position:absolute;inset:0;opacity:.16;pointer-events:none">{{ stickFieldSmall }}</div>
+    <div style="position:relative;flex:1;min-width:260px">
+      <div style="font:600 10px Figtree,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#E8A94D;margin-bottom:10px">Free Tool · Launch</div>
+      <h3 style="font:600 28px/1.1 Fraunces,serif;margin:0 0 10px">Résumé Builder</h3>
+      <p style="font:400 14.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.8);margin:0;max-width:440px">Fill in five simple tabs for your personal info, experience, education, skills, and a summary, then download a clean one page PDF. Available in English and Kajin Majōl.</p>
+    </div>
+    <div style="position:relative;display:inline-flex;align-items:center;gap:10px;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;background:#E8A94D;padding:16px 26px;border-radius:999px">Build my résumé →</div>
+    {{ cardStrokeLight }}
+  </a>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px" data-schol-grid="">
+    <sc-for list="{{ communityLinks }}" as="s" hint-placeholder-count="6">
+      <article data-reveal="" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(11,41,66,.1);border-radius:15px;padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px">
+          <span style="font:600 9.5px Figtree,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:{{ s.badgeColor }};padding:5px 10px;border-radius:999px">{{ s.badge }}</span>
+          <span style="font:600 11px Figtree,sans-serif;color:rgba(11,41,66,.5)">{{ s.deadline }}</span>
+        </div>
+        <h3 style="font:600 19px/1.2 Fraunces,serif;color:#0B2942;margin:0 0 9px">{{ s.title }}</h3>
+        <p style="font:400 13.5px/1.6 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0 0 18px;flex:1">{{ s.body }}</p>
+        <a href="{{ s.href }}" target="_blank" rel="noopener" style="font:700 13px Figtree,sans-serif;color:#C4622D">{{ s.cta }} →</a>
+        {{ cardStroke }}
+      </article>
+    </sc-for>
+  </div>
+
+  <p style="font:400 12.5px/1.5 Figtree,sans-serif;color:rgba(11,41,66,.5);margin:28px 0 0" data-reveal="">Not sure where to start? <a href="#contact" style="color:#C4622D">Contact us</a> and we’ll help you find the right resource.</p>
+</section>
+
+{{ divider }}
+
+<!-- ===== EDUCATION ===== -->
+<section id="education" style="max-width:1200px;margin:0 auto;padding:88px 24px">
+  <div style="margin-bottom:40px;max-width:700px" data-reveal="">
+    <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#C4622D;margin-bottom:14px">Education</div>
+    <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0 0 14px;color:#0B2942">Apply to our local universities.</h2>
+    <p style="font:400 16px/1.65 Figtree,sans-serif;color:rgba(11,41,66,.75);margin:0">Marshallese students are welcome to apply to Arizona's public universities, and many qualify for in-state tuition under the Compact of Free Association. Here is where to start, along with financial aid to help cover the cost.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px" data-schol-grid="">
+    <sc-for list="{{ educationLinks }}" as="s" hint-placeholder-count="4">
+      <article data-reveal="" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(11,41,66,.1);border-radius:15px;padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px">
+          <span style="font:600 9.5px Figtree,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:{{ s.badgeColor }};padding:5px 10px;border-radius:999px">{{ s.badge }}</span>
+          <span style="font:600 11px Figtree,sans-serif;color:rgba(11,41,66,.5)">{{ s.deadline }}</span>
+        </div>
+        <h3 style="font:600 19px/1.2 Fraunces,serif;color:#0B2942;margin:0 0 9px">{{ s.title }}</h3>
+        <p style="font:400 13.5px/1.6 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0 0 18px;flex:1">{{ s.body }}</p>
+        <a href="{{ s.href }}" target="_blank" rel="noopener" style="font:700 13px Figtree,sans-serif;color:#C4622D">{{ s.cta }} →</a>
+        {{ cardStroke }}
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+{{ divider }}
+
 <!-- ===== UPDATES ===== -->
 <section id="updates" style="background:#0B2942;color:#F5F0E6">
   <div style="max-width:1200px;margin:0 auto;padding:88px 24px">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:40px" data-reveal="">
       <div>
         <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#E8A94D;margin-bottom:14px">Community Updates</div>
-        <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0">What's happening now.</h2>
+        <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0">News and events.</h2>
       </div>
-      <a href="{{ fbUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;font:700 13px Figtree,sans-serif;letter-spacing:.03em;color:#0B2942;background:#F5F0E6;padding:13px 22px;border-radius:999px">
-        Follow us on Facebook →{{ btnStroke }}
+      <a href="{{ fbUrl }}" target="_blank" rel="noopener" aria-label="Follow Arizona Marshallese Community on Facebook" style="display:grid;place-items:center;width:58px;height:58px;flex:none">
+        <img src="assets/amc-logo.png" alt="Arizona Marshallese Community logo" style="width:100%;height:100%;object-fit:contain" />
       </a>
     </div>
 
@@ -176,7 +251,7 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
           <span style="width:38px;height:38px;border-radius:9px;background:#F5F0E6;color:#0B2942;display:grid;place-items:center;font:700 20px Figtree,sans-serif">f</span>
           <div style="font:600 15px Fraunces,serif">On Facebook</div>
         </div>
-        <p style="font:400 13.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.8);margin:0 0 18px">This is where we post first. Event flyers, tournament photos, and updates all land here, so check it for the latest.</p>
+        <p style="font:400 13.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.8);margin:0 0 18px">We post announcements, event flyers, and photos on Facebook first. Follow the page to stay up to date.</p>
         <a href="{{ fbUrl }}" target="_blank" rel="noopener" style="display:block;text-align:center;font:700 13px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;background:#E8A94D;padding:13px;border-radius:999px;margin-bottom:12px">Open the AMC page</a>
         <div style="font:400 11px/1.5 Figtree,sans-serif;color:rgba(245,240,230,.5);text-align:center">facebook.com/ArizonaMarshalleseCommunity</div>
       </aside>
@@ -186,53 +261,13 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
 
 {{ divider }}
 
-<!-- ===== RESOURCES ===== -->
-<section id="resources" style="max-width:1200px;margin:0 auto;padding:88px 24px">
-  <div style="margin-bottom:40px;max-width:640px" data-reveal="">
-    <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#C4622D;margin-bottom:14px">Resources</div>
-    <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0 0 14px;color:#0B2942">Help getting started.</h2>
-    <p style="font:400 16px/1.65 Figtree,sans-serif;color:rgba(11,41,66,.75);margin:0">Scholarships, applications, and a résumé builder for Marshallese families in Arizona, all in one place.</p>
-  </div>
-
-  <!-- resume launch card -->
-  <a href="https://azmarshallese.github.io/resume_builder/" target="_blank" rel="noopener" data-reveal="" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;gap:28px;background:#0B2942;color:#F5F0E6;border-radius:18px;padding:34px;margin-bottom:34px;text-decoration:none">
-    <div style="position:absolute;inset:0;opacity:.16;pointer-events:none">{{ stickFieldSmall }}</div>
-    <div style="position:relative;flex:1;min-width:260px">
-      <div style="font:600 10px Figtree,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#E8A94D;margin-bottom:10px">Free Tool · Launch</div>
-      <h3 style="font:600 28px/1.1 Fraunces,serif;margin:0 0 10px">Résumé Builder</h3>
-      <p style="font:400 14.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.8);margin:0;max-width:440px">Fill in five simple tabs for your personal info, experience, education, skills, and a summary, then download a clean one page PDF. Available in English and Kajin Majōl.</p>
-    </div>
-    <div style="position:relative;display:inline-flex;align-items:center;gap:10px;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;background:#E8A94D;padding:16px 26px;border-radius:999px">Build my résumé →</div>
-    {{ cardStrokeLight }}
-  </a>
-
-  <div style="font:600 11px Figtree,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#3A5F4F;margin-bottom:18px" data-reveal="">Scholarships &amp; Programs</div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px" data-schol-grid="">
-    <sc-for list="{{ scholarships }}" as="s" hint-placeholder-count="6">
-      <article data-reveal="" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(11,41,66,.1);border-radius:15px;padding:24px">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px">
-          <span style="font:600 9.5px Figtree,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:{{ s.badgeColor }};padding:5px 10px;border-radius:999px">{{ s.badge }}</span>
-          <span style="font:600 11px Figtree,sans-serif;color:rgba(11,41,66,.5)">{{ s.deadline }}</span>
-        </div>
-        <h3 style="font:600 19px/1.2 Fraunces,serif;color:#0B2942;margin:0 0 9px">{{ s.title }}</h3>
-        <p style="font:400 13.5px/1.6 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0 0 18px;flex:1">{{ s.body }}</p>
-        <a href="{{ s.href }}" target="_blank" rel="noopener" style="font:700 13px Figtree,sans-serif;color:#C4622D">{{ s.cta }} →</a>
-        {{ cardStroke }}
-      </article>
-    </sc-for>
-  </div>
-  <p style="font:400 12.5px/1.5 Figtree,sans-serif;color:rgba(11,41,66,.5);margin:20px 0 0" data-reveal="">Links marked <em style="font-style:normal;color:#C4622D">“from Facebook”</em> point to posts on the AMC page. Paste the real URLs here as they're announced.</p>
-</section>
-
-{{ divider }}
-
 <!-- ===== TOURNAMENTS ===== -->
 <section id="tournaments" style="background:#3A5F4F;color:#F5F0E6">
   <div style="max-width:1200px;margin:0 auto;padding:88px 24px">
     <div style="text-align:center;max-width:600px;margin:0 auto 38px" data-reveal="">
       <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#E8A94D;margin-bottom:14px">Tournaments</div>
-      <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0 0 12px">Come play with us.</h2>
-      <p style="font:400 15.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.8);margin:0">We run community games in softball, volleyball, and basketball. Grab a team and join in, or just come out to watch, eat, and cheer on your favorite team!</p>
+      <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0 0 12px">Community sports.</h2>
+      <p style="font:400 15.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.8);margin:0">We host community tournaments in softball, volleyball, and basketball. Bring a team to compete, or come out to watch, share a meal, and support our players.</p>
     </div>
 
     <div style="max-width:600px;margin:0 auto;border-bottom:1px solid rgba(245,240,230,.16)" data-reveal="">
@@ -243,7 +278,119 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
         </div>
       </sc-for>
     </div>
+
+    <div data-reveal="" style="max-width:760px;margin:40px auto 0;background:rgba(245,240,230,.08);border:1px solid rgba(232,169,77,.3);border-radius:18px;padding:32px">
+      <div style="font:600 10px Figtree,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#E8A94D;margin-bottom:10px">Back to School Tournament</div>
+      <h3 style="font:600 24px/1.25 Fraunces,serif;margin:0 0 12px;color:#F5F0E6">Women's volleyball and youth basketball, plus a day of fun for the kids</h3>
+      <p style="font:400 15px/1.65 Figtree,sans-serif;color:rgba(245,240,230,.85);margin:0 0 18px">Join us August 1, 2026 from noon to 4pm at Escalante Community Center. We're running a women's volleyball tournament and a youth basketball tournament, five teams per sport, first come first served. Kids can jump into activities throughout the day, grab free lemonade courtesy of Raising Cane's, and pick up free school supplies while they last.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+        <div style="background:rgba(11,41,66,.35);border-radius:12px;padding:16px">
+          <div style="font:600 9.5px Figtree,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#E8A94D;margin-bottom:6px">Basketball sign up</div>
+          <div style="font:600 15px Fraunces,serif;color:#F5F0E6">Yashu Lanki</div>
+          <div style="font:400 14px Figtree,sans-serif;color:rgba(245,240,230,.8)">808 275 6981</div>
+        </div>
+        <div style="background:rgba(11,41,66,.35);border-radius:12px;padding:16px">
+          <div style="font:600 9.5px Figtree,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#E8A94D;margin-bottom:6px">Volleyball sign up</div>
+          <div style="font:600 15px Fraunces,serif;color:#F5F0E6">Kuma Felix</div>
+          <div style="font:400 14px Figtree,sans-serif;color:rgba(245,240,230,.8)">623 955 1013</div>
+        </div>
+      </div>
+      <p style="font:400 12.5px Figtree,sans-serif;color:rgba(245,240,230,.6);margin:0">Thanks to SCHEELS and Raising Cane's for supporting this event.</p>
+    </div>
   </div>
+</section>
+
+{{ divider }}
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery" style="background:#F5F0E6">
+  <div style="max-width:1200px;margin:0 auto;padding:88px 24px">
+    <div style="text-align:center;max-width:640px;margin:0 auto 44px" data-reveal="">
+      <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#C4622D;margin-bottom:14px">Our Community</div>
+      <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0 0 12px;color:#0B2942">Community in action.</h2>
+      <p style="font:400 16px/1.65 Figtree,sans-serif;color:rgba(11,41,66,.75);margin:0">From cultural celebrations to advocacy at the State Capitol, here is what it looks like when Marshallese families come together in Arizona.</p>
+    </div>
+    <div data-marquee="" data-reveal="">
+      <div class="mtrack">
+        <div class="mgroup">
+          <figure><img src="assets/gallery/advocacy-az-house.jpg" alt="AMC members at the Arizona House of Representatives receiving a proclamation" loading="lazy"><figcaption>Marshallese Constitution Day, honored at the Arizona Capitol</figcaption></figure>
+          <figure><img src="assets/gallery/cultural-festival.jpg" alt="Community members in traditional green Marshallese attire at a cultural festival" loading="lazy"><figcaption>Sharing Marshallese culture with communities across the country</figcaption></figure>
+          <figure><img src="assets/gallery/community-booth.jpg" alt="Volunteers at the Arizona Marshallese Community booth" loading="lazy"><figcaption>Rallying support for families, one booth at a time</figcaption></figure>
+          <figure><img src="assets/gallery/softball-tournament.jpg" alt="Marshallese community softball players at a tournament" loading="lazy"><figcaption>Building community unity through sports tournaments</figcaption></figure>
+          <figure><img src="assets/gallery/pacific-island-culture.jpg" alt="Community members celebrating Pacific Island culture" loading="lazy"><figcaption>Pacific Island culture shines in the Valley</figcaption></figure>
+          <figure><img src="assets/gallery/cultural-dance-group.jpg" alt="Marshallese dance group in traditional blue attire" loading="lazy"><figcaption>Sharing our cultural music and dance at Camp Iakwe</figcaption></figure>
+          <figure><img src="assets/gallery/leadership-team.jpg" alt="Arizona Marshallese Community leadership and volunteers" loading="lazy"><figcaption>Marshallese leaders from across the country, here to share resources and guidance</figcaption></figure>
+          <figure><img src="assets/gallery/community-service.jpg" alt="A community member being recognized with a certificate" loading="lazy"><figcaption>Celebrating our community's achievements</figcaption></figure>
+          <figure><img src="assets/gallery/leadership-retreat.jpg" alt="Community members at a Marshallese leadership gathering" loading="lazy"><figcaption>Marshallese nonprofit leaders coming together to share ideas and strengthen our work</figcaption></figure>
+        </div>
+        <div class="mgroup" aria-hidden="true">
+          <figure><img src="assets/gallery/advocacy-az-house.jpg" alt="" loading="lazy"><figcaption>Marshallese Constitution Day, honored at the Arizona Capitol</figcaption></figure>
+          <figure><img src="assets/gallery/cultural-festival.jpg" alt="" loading="lazy"><figcaption>Sharing Marshallese culture with communities across the country</figcaption></figure>
+          <figure><img src="assets/gallery/community-booth.jpg" alt="" loading="lazy"><figcaption>Rallying support for families, one booth at a time</figcaption></figure>
+          <figure><img src="assets/gallery/softball-tournament.jpg" alt="" loading="lazy"><figcaption>Building community unity through sports tournaments</figcaption></figure>
+          <figure><img src="assets/gallery/pacific-island-culture.jpg" alt="" loading="lazy"><figcaption>Pacific Island culture shines in the Valley</figcaption></figure>
+          <figure><img src="assets/gallery/cultural-dance-group.jpg" alt="" loading="lazy"><figcaption>Sharing our cultural music and dance at Camp Iakwe</figcaption></figure>
+          <figure><img src="assets/gallery/leadership-team.jpg" alt="" loading="lazy"><figcaption>Marshallese leaders from across the country, here to share resources and guidance</figcaption></figure>
+          <figure><img src="assets/gallery/community-service.jpg" alt="" loading="lazy"><figcaption>Celebrating our community's achievements</figcaption></figure>
+          <figure><img src="assets/gallery/leadership-retreat.jpg" alt="" loading="lazy"><figcaption>Marshallese nonprofit leaders coming together to share ideas and strengthen our work</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ divider }}
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" style="max-width:1200px;margin:0 auto;padding:88px 24px">
+  <div style="text-align:center;max-width:600px;margin:0 auto 40px" data-reveal="">
+    <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#C4622D;margin-bottom:14px">Contact</div>
+    <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0 0 12px;color:#0B2942">Get in touch.</h2>
+    <p style="font:400 16px/1.65 Figtree,sans-serif;color:rgba(11,41,66,.75);margin:0">Have a question, need help, or want to reach the AMC team directly? Send us a message and we'll get back to you.</p>
+  </div>
+
+  <form onSubmit="{{ submitContact }}" data-reveal="" style="max-width:560px;margin:0 auto;background:#fff;border:1px solid rgba(11,41,66,.1);border-radius:18px;padding:34px">
+    <input type="checkbox" name="botcheck" style="display:none" tabIndex="-1" autoComplete="off" />
+    <input type="hidden" name="access_key" value="{{ web3formsKey }}" />
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div>
+        <label style="display:block;font:600 12px Figtree,sans-serif;color:#0B2942;margin-bottom:6px">First name</label>
+        <input type="text" name="first_name" required="" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid rgba(11,41,66,.18);font:400 14px Figtree,sans-serif;color:#0B2942" />
+      </div>
+      <div>
+        <label style="display:block;font:600 12px Figtree,sans-serif;color:#0B2942;margin-bottom:6px">Last name</label>
+        <input type="text" name="last_name" required="" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid rgba(11,41,66,.18);font:400 14px Figtree,sans-serif;color:#0B2942" />
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div>
+        <label style="display:block;font:600 12px Figtree,sans-serif;color:#0B2942;margin-bottom:6px">Email</label>
+        <input type="email" name="email" required="" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid rgba(11,41,66,.18);font:400 14px Figtree,sans-serif;color:#0B2942" />
+      </div>
+      <div>
+        <label style="display:block;font:600 12px Figtree,sans-serif;color:#0B2942;margin-bottom:6px">Phone (optional)</label>
+        <input type="tel" name="phone" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid rgba(11,41,66,.18);font:400 14px Figtree,sans-serif;color:#0B2942" />
+      </div>
+    </div>
+    <div style="margin-bottom:16px">
+      <label style="display:block;font:600 12px Figtree,sans-serif;color:#0B2942;margin-bottom:6px">Subject</label>
+      <select name="subject" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid rgba(11,41,66,.18);font:400 14px Figtree,sans-serif;color:#0B2942;background:#fff">
+        <option value="AMC Website: General Question">General question</option>
+        <option value="AMC Website: Notary Services">Notary services</option>
+        <option value="AMC Website: Translator or Interpreter">Translator or interpreter</option>
+        <option value="AMC Website: Tutoring">Tutoring or homework help</option>
+        <option value="AMC Website: Volunteering">Volunteering</option>
+        <option value="AMC Website: Donation">Donation</option>
+        <option value="AMC Website: Other">Other</option>
+      </select>
+    </div>
+    <div style="margin-bottom:22px">
+      <label style="display:block;font:600 12px Figtree,sans-serif;color:#0B2942;margin-bottom:6px">Message</label>
+      <textarea name="message" rows="5" required="" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid rgba(11,41,66,.18);font:400 14px/1.5 Figtree,sans-serif;color:#0B2942;resize:vertical"></textarea>
+    </div>
+    <button type="submit" style="width:100%;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;background:#E8A94D;padding:15px;border:none;border-radius:999px;cursor:pointer">Send message</button>
+    <p style="font:400 13px/1.5 Figtree,sans-serif;color:rgba(11,41,66,.65);text-align:center;margin:16px 0 0">{{ contactMsg }}</p>
+  </form>
 </section>
 
 {{ divider }}
@@ -252,8 +399,23 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
 <section id="donate" style="max-width:1200px;margin:0 auto;padding:88px 24px">
   <div style="text-align:center;max-width:600px;margin:0 auto 44px" data-reveal="">
     <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#C4622D;margin-bottom:14px">Give Back</div>
-    <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0 0 12px;color:#0B2942">Two ways to help, both simple.</h2>
-    <p style="font:400 16px/1.65 Figtree,sans-serif;color:rgba(11,41,66,.75);margin:0">Every dollar and every bag of clothes goes straight to a Marshallese family here in Arizona.</p>
+    <h2 style="font:600 clamp(30px,4vw,46px)/1.05 Fraunces,serif;letter-spacing:-.01em;margin:0 0 12px;color:#0B2942">Two ways to support our families.</h2>
+    <p style="font:400 16px/1.65 Figtree,sans-serif;color:rgba(11,41,66,.75);margin:0">Every gift provides help to better serve our community in Arizona.</p>
+  </div>
+
+  <div data-reveal="" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px">
+    <div style="text-align:center;padding:22px 16px">
+      <div style="font:600 10px Figtree,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#C4622D;margin-bottom:8px">Youth Programs</div>
+      <p style="font:400 14px/1.55 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0">Tutoring, sports, and activities that keep our kids active and supported.</p>
+    </div>
+    <div style="text-align:center;padding:22px 16px;border-left:1px solid rgba(11,41,66,.12);border-right:1px solid rgba(11,41,66,.12)">
+      <div style="font:600 10px Figtree,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#C4622D;margin-bottom:8px">Family Services</div>
+      <p style="font:400 14px/1.55 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0">Direct help for families settling in, from paperwork to healthcare.</p>
+    </div>
+    <div style="text-align:center;padding:22px 16px">
+      <div style="font:600 10px Figtree,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#C4622D;margin-bottom:8px">Community Events</div>
+      <p style="font:400 14px/1.55 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0">Tournaments, cultural celebrations, and gatherings that bring us together.</p>
+    </div>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px" data-donate-grid="">
@@ -261,16 +423,18 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
     <div data-reveal="" style="background:#0B2942;color:#F5F0E6;border-radius:18px;padding:34px;position:relative;overflow:hidden">
       <div style="position:absolute;inset:0;opacity:.12;pointer-events:none">{{ stickFieldSmall }}</div>
       <div style="position:relative">
-        <div style="font:600 10px Figtree,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#E8A94D;margin-bottom:12px">Give money</div>
-        <h3 style="font:600 24px Fraunces,serif;margin:0 0 8px">Make a donation</h3>
-        <p style="font:400 14px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.78);margin:0 0 22px">Pick an amount. It goes straight to scholarships, tournament costs, and emergency help for families who need it.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+        <div style="font:600 10px Figtree,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#E8A94D;margin-bottom:12px">Give Money · Zelle</div>
+        <h3 style="font:600 24px Fraunces,serif;margin:0 0 8px">Donate by Zelle</h3>
+        <p style="font:400 14px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.78);margin:0 0 20px">We're setting up online giving through Zelle and our Desert Financial Credit Union account. Pick a suggested amount now, and check back soon for the link.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px">
           <sc-for list="{{ amounts }}" as="a" hint-placeholder-count="4">
             <button onClick="{{ a.select }}" style="{{ a.style }}">{{ a.label }}</button>
           </sc-for>
         </div>
-        <a href="{{ fbUrl }}" target="_blank" rel="noopener" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;display:block;text-align:center;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;background:#E8A94D;padding:15px;border-radius:999px">{{ donateLabel }}{{ btnStroke }}</a>
-        <div style="font:400 11px/1.5 Figtree,sans-serif;color:rgba(245,240,230,.5);margin-top:12px;text-align:center">Add your Zelle, PayPal, or GoFundMe link here. Every gift is tax deductible, 501(c)(3).</div>
+        <div style="background:rgba(232,169,77,.14);border:1px dashed rgba(232,169,77,.5);border-radius:14px;padding:16px 18px;text-align:center">
+          <div style="font:600 13px Figtree,sans-serif;color:#F5F0E6">Online giving link coming soon</div>
+          <div style="font:400 12.5px/1.5 Figtree,sans-serif;color:rgba(245,240,230,.75);margin-top:6px">In the meantime, <a href="mailto:billmapeter@azmarshallese.org" style="color:#E8A94D">email us</a> if you'd like to give another way.</div>
+        </div>
       </div>
     </div>
 
@@ -278,18 +442,8 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
     <div data-reveal="" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;background:#fff;border:1px solid rgba(11,41,66,.1);border-radius:18px;padding:34px">
       <div style="font:600 10px Figtree,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#3A5F4F;margin-bottom:12px">Give goods</div>
       <h3 style="font:600 24px Fraunces,serif;color:#0B2942;margin:0 0 8px">Clothing drop-off</h3>
-      <p style="font:400 14px/1.6 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0 0 22px">Clean, gently used clothing for all ages, especially kids' and work clothes. We sort it and hand it straight to families settling in.</p>
-      <div style="display:flex;flex-direction:column;gap:14px">
-        <div style="display:flex;gap:12px">
-          <span style="flex:none;width:34px;height:34px;border-radius:8px;background:#F5F0E6;display:grid;place-items:center;color:#C4622D;font:700 15px Figtree,sans-serif">📍</span>
-          <div><div style="font:600 13px Figtree,sans-serif;color:#0B2942">Drop-off location</div><div style="font:400 13px Figtree,sans-serif;color:rgba(11,41,66,.65)">Address coming soon, Phoenix West Valley</div></div>
-        </div>
-        <div style="display:flex;gap:12px">
-          <span style="flex:none;width:34px;height:34px;border-radius:8px;background:#F5F0E6;display:grid;place-items:center;color:#C4622D;font:700 15px Figtree,sans-serif">🕑</span>
-          <div><div style="font:600 13px Figtree,sans-serif;color:#0B2942">Hours</div><div style="font:400 13px Figtree,sans-serif;color:rgba(11,41,66,.65)">Saturdays 10am–2pm, or message us to arrange</div></div>
-        </div>
-      </div>
-      <a href="{{ fbUrl }}" target="_blank" rel="noopener" style="display:block;text-align:center;margin-top:22px;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;border:1.5px solid #0B2942;padding:14px;border-radius:999px">Message us to donate</a>
+      <p style="font:400 14px/1.6 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0 0 22px">We accept clean clothing for children, adults, and elders, along with shoes. Every donation goes straight to families settling in. Email us and we'll set up a time and place.</p>
+      <a href="mailto:billmapeter@azmarshallese.org" style="display:block;text-align:center;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;border:1.5px solid #0B2942;padding:14px;border-radius:999px">Email AMC</a>
       {{ cardStroke }}
     </div>
   </div>
@@ -313,7 +467,7 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
         <span style="display:grid;place-items:center;width:42px;height:42px">{{ navMark }}</span>
         <div style="font:700 16px Fraunces,serif">Arizona Marshallese Community</div>
       </div>
-      <p style="font:400 13.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.7);max-width:340px;margin:0 0 14px">A Marshallese-run nonprofit (501(c)(3)) here to help our families in Arizona. Kommol for walking with us.</p>
+      <p style="font:400 13.5px/1.6 Figtree,sans-serif;color:rgba(245,240,230,.7);max-width:340px;margin:0 0 14px">A 501(c)(3) nonprofit dedicated to representing and supporting the Marshallese community in Arizona. Kommol tata for your support.</p>
       <div style="font:600 10px Figtree,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#E8A94D">Est. 2024 · Phoenix, Arizona</div>
     </div>
     <div>
@@ -328,7 +482,7 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
       <div style="font:600 11px Figtree,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#E8A94D;margin-bottom:14px">Connect</div>
       <div style="display:flex;flex-direction:column;gap:9px">
         <a href="{{ fbUrl }}" target="_blank" rel="noopener" style="font:400 14px Figtree,sans-serif;color:rgba(245,240,230,.82)">Facebook</a>
-        <a href="mailto:hello@azmarshallese.org" style="font:400 14px Figtree,sans-serif;color:rgba(245,240,230,.82)">billmapeter@azmarshallese.org</a>
+        <a href="mailto:billmapeter@azmarshallese.org" style="font:400 14px Figtree,sans-serif;color:rgba(245,240,230,.82)">billmapeter@azmarshallese.org</a>
         <a href="#donate" style="font:400 14px Figtree,sans-serif;color:rgba(245,240,230,.82)">Donate</a>
       </div>
     </div>
@@ -340,7 +494,7 @@ Across the widest ocean,<br><span style="font-style:italic;color:#E8A94D">a home
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;fbUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.facebook.com/people/Arizona-Marshallese-Community/61567054813935/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Full&quot;,&quot;Calm&quot;,&quot;Off&quot;],&quot;default&quot;:&quot;Full&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;tribalOpacity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.14,&quot;min&quot;:0,&quot;max&quot;:0.4,&quot;step&quot;:0.02,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
 class Component extends DCLogic {
-  state = { mobileNav:false, tab:'softball', amount:50 };
+  state = { mobileNav:false, tab:'softball', amount:50, contactMsg:'' };
 
   componentDidMount(){ this.applyMotion(); this.observe(); }
   componentDidUpdate(){ this.applyMotion(); }
@@ -410,16 +564,22 @@ class Component extends DCLogic {
       React.createElement('circle',{cx:22,cy:22,r:2.4,fill:'#E8A94D'}));
   }
   stickFieldEl(scale){
-    const s=scale||1, W=1600*s, H=1000*s, gap=70*s, lines=[];
-    const grad='scGrad'+(scale?'S':'B');
-    for(let x=-H;x<W;x+=gap){ lines.push(React.createElement('line',{key:'a'+x,x1:x,y1:0,x2:x+H,y2:H,stroke:`url(#${grad})`,strokeWidth:1})); lines.push(React.createElement('line',{key:'b'+x,x1:x,y1:H,x2:x+H,y2:0,stroke:`url(#${grad})`,strokeWidth:1})); }
-    const dia=[]; for(let x=0;x<W;x+=gap*2){ for(let y=0;y<H;y+=gap*2){ const d=gap*0.34; dia.push(React.createElement('path',{key:'d'+x+'_'+y,d:`M${x} ${y-d}L${x+d} ${y}L${x} ${y+d}L${x-d} ${y}Z`,fill:'none',stroke:`url(#${grad})`,strokeWidth:1.2})); } }
+    // Single motif, hexagon / turtle carapace (bod), inspired by Marshallese tattoo patterns.
+    const s=scale||1, W=1600*s, H=1000*s, tag=Math.round(s*100);
+    const grad='scGrad'+tag, pid='tribalPat'+tag;
+    const R=13*s, tileW=R*1.9, tileH=R*1.9;
+    let pts='';
+    for(let i=0;i<6;i++){ const a=Math.PI/3*i-Math.PI/2; pts+=(tileW/2+R*Math.cos(a)).toFixed(1)+','+(tileH/2+R*Math.sin(a)).toFixed(1)+' '; }
+    const tile=[React.createElement('polygon',{key:'hex',points:pts,fill:'none',stroke:`url(#${grad})`,strokeWidth:1.2*s})];
     return React.createElement('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:'100%',preserveAspectRatio:'xMidYMid slice'},
-      React.createElement('defs',null,React.createElement('linearGradient',{id:grad,x1:'0',y1:'0',x2:'1',y2:'1'},
-        React.createElement('stop',{offset:'0%',stopColor:'#1E4E6E'}),
-        React.createElement('stop',{offset:'50%',stopColor:'#C4622D'}),
-        React.createElement('stop',{offset:'100%',stopColor:'#E8A94D'}))),
-      ...lines,...dia);
+      React.createElement('defs',null,
+        React.createElement('linearGradient',{id:grad,x1:'0',y1:'0',x2:'1',y2:'1'},
+          React.createElement('stop',{offset:'0%',stopColor:'#1E4E6E'}),
+          React.createElement('stop',{offset:'50%',stopColor:'#C4622D'}),
+          React.createElement('stop',{offset:'100%',stopColor:'#E8A94D'})),
+        React.createElement('pattern',{id:pid,x:0,y:0,width:tileW,height:tileH,patternUnits:'userSpaceOnUse'},...tile)
+      ),
+      React.createElement('rect',{x:0,y:0,width:W,height:H,fill:`url(#${pid})`}));
   }
   strokeRect(color){
     return React.createElement('svg',{'aria-hidden':true,style:{position:'absolute',inset:0,width:'100%',height:'100%',pointerEvents:'none',zIndex:1}},
@@ -448,7 +608,7 @@ class Component extends DCLogic {
         games:[
           {date:'Aug 2',time:'9:00a',match:'Majuro Stars vs Ebeye United',venue:'Rio Vista Park, Field 3'},
           {date:'Aug 2',time:'11:00a',match:'Kwaj Riders vs Springdale Aeto',venue:'Rio Vista Park, Field 3'},
-          {date:'Aug 9',time:'10:00a',match:'Semifinal — winners bracket',venue:'Surprise Community Park'},
+          {date:'Aug 9',time:'10:00a',match:'Semifinal (winners bracket)',venue:'Surprise Community Park'},
           {date:'Aug 16',time:'1:00p',match:'Championship',venue:'Surprise Community Park'}]},
       volleyball:{ label:"Volleyball", teams:['Wōtje Waves','Arno Spikers','Jaluit Jets','Laura Lightning'],
         games:[
@@ -480,7 +640,7 @@ class Component extends DCLogic {
     const cur=tData[this.state.tab];
 
     const leaders=[
-      {name:'Billma Peter',role:'President',bio:'Born and raised in Surprise, Arizona. She earned her bachelor\u2019s in Health Administration at the University of Arizona, then a master\u2019s in Health Administration from Taipei Medical University.',portrait:this.imgEl('assets/billma-peter.png')},
+      {name:'Billma Peter',role:'President',bio:'Leads AMC and oversees our programs, represents the community with local partners and government offices, and helps guide the direction of the organization.',portrait:this.imgEl('assets/billma-peter.png')},
       {name:'Selma Peter',role:'Cofounder · Treasurer',bio:'Handles the money and makes sure our programs stay funded.',portrait:this.initialsEl('Selma Peter','#3A5F4F','#F5F0E6')},
       {name:'Carlson Takiah',role:'Vice President',bio:'Helps families find jobs, housing, and the right people to talk to.',portrait:this.initialsEl('Carlson Takiah','#0B2942','#F5F0E6')},
       {name:'Paulina Capelle-Sarmiento',role:'Secretary',bio:'Keeps everyone in the loop with meetings, notes, and getting the word out.',portrait:this.initialsEl('Paulina Capelle-Sarmiento','#8C3B2E','#F5F0E6')},
@@ -489,43 +649,63 @@ class Component extends DCLogic {
 
     const news=[
       {day:'12',mon:'Jul',tag:'Relief Drive',title:'Chuuk relief drive: Super Typhoon Sinlaku',body:'We\u2019re collecting for Micronesian families who lost homes and clean water. Drop-off and donation info is down in the Donate section.',cta:'See on Facebook',href:fbUrl},
-      {day:'02',mon:'Aug',tag:'Tournaments',title:'Summer games are coming up',body:'Softball, volleyball, and basketball. Come out, bring the kids, and get your team signed up.',cta:'See on Facebook',href:fbUrl},
-      {day:'15',mon:'Aug',tag:'Scholarships',title:'AMC scholarship deadline is close',body:'Marshallese students in Arizona heading to college or trade school, get your application in before it closes.',cta:'See on Facebook',href:fbUrl},
-      {day:'24',mon:'Aug',tag:'Culture',title:'Manit Day potluck',body:'Bring a dish and the whole family. We celebrate Marshallese Constitution Day with food, singing, and stories from home.',cta:'See on Facebook',href:fbUrl}
+      {day:'01',mon:'Aug',tag:'Community Event',title:'2nd Annual Back to School Event',body:'Backpacks and school supplies for the kids, plus basketball and volleyball, food, and family fun at Escalante Community Center. Everyone is welcome, see our Facebook for details.',cta:'See on Facebook',href:fbUrl}
     ];
 
-    const scholarships=[
-      {badge:'Open',badgeColor:'#3A5F4F',deadline:'Due Aug 15',title:'AMC Community Scholarship',body:'Our own award for Marshallese students in Arizona pursuing college, trade school, or certification. Renewable each year.',cta:'From Facebook',href:fbUrl},
-      {badge:'Open',badgeColor:'#3A5F4F',deadline:'Rolling',title:'Marshallese Educational Initiative',body:'National scholarships and college guidance from MEI for students of Marshallese descent, wherever you\u2019re enrolled.',cta:'From Facebook',href:fbUrl},
-      {badge:'Info',badgeColor:'#C4622D',deadline:'Year-round',title:'COFA & Financial Aid Help',body:'Under the Compact of Free Association you may qualify for Medicaid, in-state tuition, and federal aid. We\u2019ll help you check.',cta:'From Facebook',href:fbUrl},
-      {badge:'Open',badgeColor:'#3A5F4F',deadline:'Due Sep 1',title:'Trade & Workforce Grants',body:'Support for CDL, nursing assistant, and skilled trade programs, the fast routes to a paycheck here in the Valley.',cta:'From Facebook',href:fbUrl},
-      {badge:'Info',badgeColor:'#C4622D',deadline:'Year-round',title:'UArizona & ASU Resources',body:'Campus support offices, application-fee waivers, and Pacific Islander student groups at Arizona\u2019s universities.',cta:'From Facebook',href:fbUrl},
-      {badge:'Open',badgeColor:'#3A5F4F',deadline:'Rolling',title:'Youth Mentorship Program',body:'Pairs Marshallese high-schoolers with community mentors for college essays, FAFSA, and just figuring it out.',cta:'From Facebook',href:fbUrl}
+    const communityLinks=[
+      {badge:'AMC Program',badgeColor:'#3A5F4F',deadline:'Year-round',title:'Need a Tutor?',body:'Stuck on an assignment or getting ready for an exam? Reach out and we\u2019ll connect your child with a tutor who can help.',cta:'Contact us',href:'#contact'},
+      {badge:'AMC Program',badgeColor:'#3A5F4F',deadline:'By appointment',title:'Notary Services',body:'Need a document notarized? We offer notary services for the community. Reach out through our contact form and let us know what you need.',cta:'Contact us',href:'#contact'},
+      {badge:'We Help',badgeColor:'#3A5F4F',deadline:'Contact us',title:'Translators & Interpreters',body:'Arizona has translators and interpreters who speak Marshallese. If you need help connecting with the right person, reach out and tell us more.',cta:'Contact us',href:'#contact'},
+      {badge:'Your Status',badgeColor:'#C4622D',deadline:'Official CBP site',title:'Update Your I-94',body:'Your I-94 is your official U.S. entry record. View it, print it, or check your admission information through the official CBP website.',cta:'Go to i94.cbp.dhs.gov',href:'https://i94.cbp.dhs.gov/home'},
+      {badge:'Your Rights',badgeColor:'#C4622D',deadline:'Learn more',title:'COFA Status & Benefits',body:'Under the Compact of Free Association you may qualify for Medicaid, in-state tuition, and federal aid. See the official USCIS overview of your status.',cta:'Read USCIS overview',href:'https://www.uscis.gov/working-in-the-united-states/status-of-citizens-of-the-freely-associated-states-of-the-federated-states-of-micronesia-and-the'},
+      {badge:'Partner',badgeColor:'#C4622D',deadline:'On Facebook',title:'Ronjake Autism Support Network',body:'Support and resources for Marshallese families raising children with autism, from a fellow Marshallese nonprofit.',cta:'Visit their Facebook',href:'https://www.facebook.com/RonjakeAutismSupportNetwork'}
+    ];
+    const educationLinks=[
+      {badge:'Financial Aid',badgeColor:'#3A5F4F',deadline:'Opens each fall',title:'FAFSA: Federal Student Aid',body:'Free federal aid for college and trade school. Many Marshallese students qualify under COFA, and this is the first step.',cta:'Start your FAFSA',href:'https://studentaid.gov/h/apply-for-aid/fafsa'},
+      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'Arizona State University',body:'Apply to ASU, one of Arizona\u2019s largest universities, with strong support for first generation and Pacific Islander students.',cta:'Apply to ASU',href:'https://admission.asu.edu/apply'},
+      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'University of Arizona',body:'Apply to the University of Arizona in Tucson, with resources for transfer, first generation, and COFA students.',cta:'Apply to UArizona',href:'https://admissions.arizona.edu/apply'},
+      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'Grand Canyon University',body:'Apply to GCU in Phoenix, a private university with flexible on campus and online degree programs.',cta:'Apply to GCU',href:'https://www.gcu.edu/admissions'}
     ];
 
     const sports=Object.keys(tData).map(k=>({label:tData[k].label,select:()=>set({tab:k}),tabStyle:this.styleStr(this.tabStyle(this.state.tab===k))}));
 
     const amtVals=[25,50,100,250];
     const amounts=amtVals.map(v=>({label:'$'+v,select:()=>set({amount:v}),style:this.styleStr(this.amtStyle(this.state.amount===v))}));
+    const web3formsKey='bc33fe29-932c-42fd-81a7-8531aa428dc7';
+    const submitContact=(e)=>{
+      e.preventDefault();
+      const form=e.target;
+      const fd=new FormData(form);
+      set({contactMsg:'Sending your message...'});
+      fetch('https://api.web3forms.com/submit',{method:'POST',body:fd})
+        .then(r=>r.json())
+        .then(json=>{
+          if(json && json.success){ set({contactMsg:'Thanks, we got your message and will get back to you soon.'}); form.reset(); }
+          else{ set({contactMsg:'Something went wrong. Please email us directly at billmapeter@azmarshallese.org.'}); }
+        })
+        .catch(()=>{ set({contactMsg:'Something went wrong. Please email us directly at billmapeter@azmarshallese.org.'}); });
+    };
+    const contactMsg=this.state.contactMsg;
 
     return {
       fbUrl, mobileNav:this.state.mobileNav,
       toggleMobileNav:()=>set({mobileNav:!this.state.mobileNav}),
       closeMobileNav:()=>set({mobileNav:false}),
-      navLinks:[{label:'About',href:'#about'},{label:'Updates',href:'#updates'},{label:'Resources',href:'#resources'},{label:'Tournaments',href:'#tournaments'}],
+      navLinks:[{label:'About',href:'#about'},{label:'Resources',href:'#resources'},{label:'Education',href:'#education'},{label:'News',href:'#updates'},{label:'Sports',href:'#tournaments'},{label:'Gallery',href:'#gallery'},{label:'Contact',href:'#contact'}],
       navMark:this.navMarkEl(),
       stickField:this.stickFieldEl(1),
       stickFieldSmall:this.stickFieldEl(0.5),
       compassStar:this.compassStarEl(),
       compassRing:this.compassRingEl(),
       presPortrait:this.imgEl('assets/billma-peter.png','center 18%'),
-      leaders, news, scholarships,
+      leaders, news, communityLinks, educationLinks,
       sportCards:[
         {n:'01',label:"Men's Softball",line:'Spring and summer games out at the West Valley parks.'},
         {n:'02',label:'Volleyball',line:'Indoor nights at the community gym, all skill levels welcome.'},
         {n:'03',label:'Basketball',line:'Weekend runs and holiday tournaments.'}
       ],
-      amounts, donateLabel:'Donate $'+this.state.amount,
+      amounts, donateLabel:'$'+this.state.amount,
+      submitContact, contactMsg, web3formsKey,
       divider:this.dividerEl(),
       btnStroke:this.strokeRect('rgba(11,41,66,.5)'),
       cardStroke:this.strokeRect('#C4622D'),
@@ -536,14 +716,22 @@ class Component extends DCLogic {
   }
   styleStr(o){ return Object.entries(o).map(([k,v])=>k.replace(/[A-Z]/g,m=>'-'+m.toLowerCase())+':'+v).join(';'); }
   dividerEl(){
-    const dia=[]; for(let x=20;x<1200;x+=40){ dia.push(React.createElement('path',{key:x,d:`M${x} 11L${x+11} 22L${x} 33L${x-11} 22Z`,fill:'none',stroke:'url(#divGrad)',strokeWidth:1.4})); dia.push(React.createElement('line',{key:'l'+x,x1:x-20,y1:22,x2:x+20,y2:22,stroke:'url(#divGrad)',strokeWidth:1,opacity:.5})); }
+    // Beaded dot motif (addilajju), staggered rows for a jeweled rhythm between sections.
+    const dots=[];
+    const rows=[{y:13,r:1.5,step:16,offset:8,op:.45},{y:22,r:2.8,step:16,offset:0,op:.95},{y:31,r:1.5,step:16,offset:8,op:.45}];
+    rows.forEach((row,ri)=>{
+      for(let x=row.offset;x<1200;x+=row.step){
+        dots.push(React.createElement('circle',{key:'d'+ri+'_'+x,cx:x,cy:row.y,r:row.r,fill:'url(#divGrad)',opacity:row.op}));
+      }
+    });
+    dots.push(React.createElement('line',{key:'base',x1:0,y1:22,x2:1200,y2:22,stroke:'url(#divGrad)',strokeWidth:.75,opacity:.2}));
     return React.createElement('div',{'aria-hidden':true,style:{width:'100%',height:'44px',overflow:'hidden',background:'#F5F0E6'}},
       React.createElement('svg',{viewBox:'0 0 1200 44',width:'100%',height:'44',preserveAspectRatio:'none'},
         React.createElement('defs',null,React.createElement('linearGradient',{id:'divGrad',x1:'0',y1:'0',x2:'1',y2:'0'},
           React.createElement('stop',{offset:'0%',stopColor:'#0B2942'}),
           React.createElement('stop',{offset:'50%',stopColor:'#C4622D'}),
           React.createElement('stop',{offset:'100%',stopColor:'#E8A94D'}))),
-        ...dia));
+        ...dots));
   }
 }
 </script>
