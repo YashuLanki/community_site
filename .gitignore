@@ -14,3 +14,7 @@
 .claude/
 .remember/
 incoming/
+.playwright-mcp/
+
+# Reference docs (not part of the site)
+AMC BUSINESS PLAN.docx.pdf
