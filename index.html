@@ -104,9 +104,16 @@
       <h1 style="font:600 clamp(40px,6vw,74px)/1.02 Fraunces,serif;letter-spacing:-.015em;margin:0 0 24px;animation:riseIn .9s ease .1s both" data-anim="entrance">
 Arizona Marshallese Community <span style="font-style:italic;color:#E8A94D">(AMC)</span>
       </h1>
-      <p style="font:400 clamp(16px,1.5vw,19px)/1.65 Figtree,sans-serif;max-width:540px;color:rgba(245,240,230,.82);margin:0 0 34px;animation:riseIn .9s ease .22s both" data-anim="entrance">
-        We're a 501(c)(3) nonprofit built by and for the Marshallese community in Arizona, a home away from home rooted in faith, language, and <em style="font-style: normal; color: rgb(245, 240, 230);">manit</em>, where no family walks alone and every child grows up proud of who they are.
-      </p>
+      <div style="display:flex;flex-direction:column;gap:18px;max-width:560px;margin:0 0 34px;animation:riseIn .9s ease .22s both" data-anim="entrance">
+        <div style="border-left:2px solid #E8A94D;padding-left:18px">
+          <div style="font:600 10px Figtree,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#E8A94D;margin-bottom:7px">Our Vision</div>
+          <p style="font:400 italic 17px/1.6 Fraunces,serif;color:rgba(245,240,230,.88);margin:0">The corporation is dedicated to meeting the needs of the Marshallese community in Arizona.</p>
+        </div>
+        <div style="border-left:2px solid #3A5F4F;padding-left:18px">
+          <div style="font:600 10px Figtree,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#E8A94D;margin-bottom:7px">Our Mission</div>
+          <p style="font:400 italic 17px/1.6 Fraunces,serif;color:rgba(245,240,230,.88);margin:0">The specific purpose of the corporation is to address the needs of the Marshallese population in Arizona. We aim to preserve cultural identity and cultivate prosperous relationships among Marshallese community leaders in the state and with other key stakeholders. Our mission is to provide support, resources, and advocacy to ensure the well-being and success of Marshallese individuals who reside in the state of Arizona.</p>
+        </div>
+      </div>
       <div style="display:flex;flex-wrap:wrap;gap:14px;animation:riseIn .9s ease .34s both" data-anim="entrance">
         <a href="#about" onMouseEnter="{{ hoverDraw }}" onMouseLeave="{{ hoverReset }}" style="position:relative;overflow:hidden;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;background:#F5F0E6;padding:15px 26px;border-radius:999px">
           About us{{ btnStroke }}
@@ -138,7 +145,8 @@ Arizona Marshallese Community <span style="font-style:italic;color:#E8A94D">(AMC
       <h2 style="font:600 clamp(30px,4vw,46px)/1.06 Fraunces,serif;letter-spacing:-.01em;margin:0 0 22px;color:#0B2942">Who we are.</h2>
 
       <p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0 0 16px">Founded in 2024, Arizona Marshallese Community is a 501(c)(3) nonprofit representing and supporting Marshallese families across Arizona. Most of the community calls the Phoenix area home, with families further out in Tucson and north in Flagstaff. Many are drawn here for work, school, or medical care.</p><p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0 0 16px">AMC is run by a Marshallese Board of Directors, and our work stays close to what families actually need: help updating an I-94 or passport, guidance signing up for health insurance, connecting students with scholarships alongside fellow Marshallese graduates, and pointing people toward the right local resources, all while keeping our language and manit (culture) alive.</p>
-      <p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0">Our mission is simple: support Marshallese families with the resources and advocacy they need, and keep our language and manit strong for the next generation. That's what it comes down to. We show up for each other, the same way we always have.</p>
+      <p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0 0 16px">Beyond the day-to-day help, AMC advocates at the State Capitol for the policies that affect COFA citizens, from healthcare access to housing. We also organize cultural celebrations and peer support groups where families can lean on each other and pass Marshallese traditions on to the next generation.</p>
+      <p style="font:400 16px/1.7 Figtree,sans-serif;color:rgba(11,41,66,.82);margin:0">That's what it comes down to. We show up for each other, the same way we always have.</p>
     </div>
     <div data-reveal="">
       <div style="font:600 11px Figtree,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#3A5F4F;margin-bottom:20px">Leadership</div>
@@ -242,7 +250,7 @@ Arizona Marshallese Community <span style="font-style:italic;color:#E8A94D">(AMC
         </div>
         <h3 style="font:600 19px/1.2 Fraunces,serif;color:#0B2942;margin:0 0 9px">{{ s.title }}</h3>
         <p style="font:400 13.5px/1.6 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0 0 18px;flex:1">{{ s.body }}</p>
-        <a href="{{ s.href }}" target="_blank" rel="noopener" style="font:700 13px Figtree,sans-serif;color:#C4622D">{{ s.cta }} →</a>
+        <a href="{{ s.href }}" target="{{ s.target }}" rel="{{ s.rel }}" style="font:700 13px Figtree,sans-serif;color:#C4622D">{{ s.cta }} →</a>
         {{ cardStroke }}
       </article>
     </sc-for>
@@ -457,7 +465,7 @@ Arizona Marshallese Community <span style="font-style:italic;color:#E8A94D">(AMC
       <h3 style="font:600 24px Fraunces,serif;color:#0B2942;margin:0 0 8px">Clothing drop-off</h3>
       <p style="font:400 14px/1.6 Figtree,sans-serif;color:rgba(11,41,66,.72);margin:0 0 18px">Help us send clothes and shoes back home. We collect clean clothing and shoes for children, adults, and elders, then get them to people in the Marshall Islands and neighboring islands who need them. Contact us and we'll set up a time and place to drop off your donation.</p>
       <img src="assets/clothing-drive-dropoff.jpg" alt="An AMC family with a car full of donated clothing and supplies" style="width:100%;height:auto;border-radius:12px;display:block;margin-bottom:14px" />
-      <p style="font:400 13px/1.55 Figtree,sans-serif;color:rgba(11,41,66,.6);margin:0 0 22px">A special thank you to the <a href="https://www.facebook.com/fijianassociationofarizona/" target="_blank" rel="noopener" style="color:#0B2942;text-decoration:underline">Fijian Association of Arizona</a> for their generous help collecting and donating clothing to families in Chuuk for one of our previous donation drives.</p>
+      <p style="font:400 13px/1.55 Figtree,sans-serif;color:rgba(11,41,66,.6);margin:0 0 22px">A special thank you to the <a href="https://www.facebook.com/fijianassociationofarizona/" target="_blank" rel="noopener" style="color:#0B2942;text-decoration:underline">Fijian Association of Arizona</a> for their generous help collecting and donating clothing to families in Chuuk, and to <a href="https://www.facebook.com/share/g/1dJHM5QTDu/?mibextid=wwXIfr" target="_blank" rel="noopener" style="color:#0B2942;text-decoration:underline">CAN-A</a> for including AMC in efforts to support Chuuk.</p>
       <a href="#contact" style="display:block;text-align:center;font:700 14px Figtree,sans-serif;letter-spacing:.04em;color:#0B2942;border:1.5px solid #0B2942;padding:14px;border-radius:999px">Contact Us</a>
       {{ cardStroke }}
     </div>
@@ -740,17 +748,17 @@ class Component extends DCLogic {
     ];
 
     const communityLinks=[
-      {badge:'AMC Program',badgeColor:'#3A5F4F',deadline:'Year-round',title:'Need a Tutor?',body:'Stuck on an assignment or getting ready for an exam? Reach out and we\u2019ll connect your child with a tutor who can help.',cta:'Contact us',href:'#contact'},
-      {badge:'AMC Program',badgeColor:'#3A5F4F',deadline:'By appointment',title:'Notary Services',body:'Need a document notarized? We offer notary services for the community. Reach out through our contact form and let us know what you need.',cta:'Contact us',href:'#contact'},
-      {badge:'We Help',badgeColor:'#3A5F4F',deadline:'Contact us',title:'Translators & Interpreters',body:'Arizona has translators and interpreters who speak Marshallese. If you need help connecting with the right person, reach out and tell us more.',cta:'Contact us',href:'#contact'},
-      {badge:'Your Status',badgeColor:'#C4622D',deadline:'Official CBP site',title:'Update Your I-94',body:'Your I-94 is your official U.S. entry record. View it, print it, or check your admission information through the official CBP website.',cta:'Go to i94.cbp.dhs.gov',href:'https://i94.cbp.dhs.gov/home'},
-      {badge:'Your Rights',badgeColor:'#C4622D',deadline:'Learn more',title:'COFA Status & Benefits',body:'Under the Compact of Free Association you may qualify for Medicaid, in-state tuition, and federal aid. See the official USCIS overview of your status.',cta:'Read USCIS overview',href:'https://www.uscis.gov/working-in-the-united-states/status-of-citizens-of-the-freely-associated-states-of-the-federated-states-of-micronesia-and-the'},
-      {badge:'Partner',badgeColor:'#C4622D',deadline:'Learn more',title:'Ronjake Autism Support Network',body:'Support and resources for Marshallese families raising children with autism, from a fellow Marshallese nonprofit.',cta:'Visit their website',href:'http://www.ronjakeautism.org'}
+      {badge:'AMC Program',badgeColor:'#3A5F4F',deadline:'Year-round',title:'Need a Tutor?',body:'Stuck on an assignment or getting ready for an exam? Reach out and we\u2019ll connect your child with a tutor who can help.',cta:'Contact us',href:'#contact',target:'_self',rel:''},
+      {badge:'AMC Program',badgeColor:'#3A5F4F',deadline:'By appointment',title:'Notary Services',body:'Need a document notarized? We offer notary services for the community. Reach out through our contact form and let us know what you need.',cta:'Contact us',href:'#contact',target:'_self',rel:''},
+      {badge:'We Help',badgeColor:'#3A5F4F',deadline:'Contact us',title:'Translators & Interpreters',body:'Arizona has translators and interpreters who speak Marshallese. If you need help connecting with the right person, reach out and tell us more.',cta:'Contact us',href:'#contact',target:'_self',rel:''},
+      {badge:'Your Status',badgeColor:'#C4622D',deadline:'Official CBP site',title:'Update Your I-94',body:'Your I-94 is your official U.S. entry record. View it, print it, or check your admission information through the official CBP website.',cta:'Go to i94.cbp.dhs.gov',href:'https://i94.cbp.dhs.gov/home',target:'_blank',rel:'noopener'},
+      {badge:'Your Rights',badgeColor:'#C4622D',deadline:'Learn more',title:'COFA Status & Benefits',body:'Under the Compact of Free Association you may qualify for Medicaid, in-state tuition, and federal aid. See the official USCIS overview of your status.',cta:'Read USCIS overview',href:'https://www.uscis.gov/working-in-the-united-states/status-of-citizens-of-the-freely-associated-states-of-the-federated-states-of-micronesia-and-the',target:'_blank',rel:'noopener'},
+      {badge:'Partner',badgeColor:'#C4622D',deadline:'Learn more',title:'Ronjake Autism Support Network',body:'Support and resources for Marshallese families raising children with autism, from a fellow Marshallese nonprofit.',cta:'Visit their website',href:'http://www.ronjakeautism.org',target:'_blank',rel:'noopener'}
     ];
     const educationLinks=[
       {badge:'Financial Aid',badgeColor:'#3A5F4F',deadline:'Opens each fall',title:'FAFSA: Federal Student Aid',body:'Free federal aid for college and trade school. Many Marshallese students qualify under COFA, and this is the first step.',cta:'Start your FAFSA',href:'https://studentaid.gov/h/apply-for-aid/fafsa'},
       {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'Arizona State University',body:'Apply to ASU, one of Arizona\u2019s largest universities, with strong support for first-generation and Pacific Islander students.',cta:'Apply to ASU',href:'https://admission.asu.edu/apply'},
-      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'University of Arizona',body:'Apply to the University of Arizona in Tucson, with resources for transfer, first-generation, and COFA students.',cta:'Apply to UArizona',href:'https://admissions.arizona.edu/apply'},
+      {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'University of Arizona',body:'Apply to the University of Arizona in Tucson, with resources for transfer, first-generation, and COFA students.',cta:'Apply to UArizona',href:'https://www.arizona.edu/admissions/apply'},
       {badge:'Apply',badgeColor:'#3A5F4F',deadline:'Apply online',title:'Grand Canyon University',body:'Apply to GCU in Phoenix, a private university with flexible on-campus and online degree programs.',cta:'Apply to GCU',href:'https://www.gcu.edu/admissions'}
     ];
 
